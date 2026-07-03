@@ -1,87 +1,53 @@
 # Canvas File Downloader
 
-A Python utility script to download all files from a specific Canvas course (e.g., from Ashesi University's Canvas instance) to a local folder on your device.
+Bulk-download **all files** from a Canvas LMS course using the Canvas REST API — built for students who need offline copies of lecture materials.
 
-## 🔧 Features
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=flat-square&logo=python&logoColor=white)
+![Canvas](https://img.shields.io/badge/Canvas-LMS-E72429?style=flat-square)
 
-* Downloads **all course files** using the official Canvas API.
-* Automatically handles **API pagination**.
-* Saves files into a local folder of your choice.
-* Supports secure **token-based authentication**.
+## Features
 
-## 🚀 Setup & Usage
+- Paginated API traversal — fetches every file in a course
+- Saves to a local `canvas_files/` directory
+- Configurable `ACCESS_TOKEN`, `COURSE_ID`, and `BASE_URL`
+- Simple single-script design
 
-### 1. Clone or Download This Repository
+## Prerequisites
 
-```bash
-git clone https://github.com/your-username/Canvas-File-Downloader.git
-cd Canvas-File-Downloader
-```
+1. Log into your institution's Canvas (e.g. Instructure).
+2. Generate a personal **access token** (Account → Settings → Approved Integrations).
+3. Note your **course ID** from the course URL.
 
-### 2. Install Dependencies
-
-This script requires the `requests` library:
+## Quick start
 
 ```bash
 pip install requests
 ```
 
-### 3. Get Your Canvas Access Token
-
-1. Log in to [https://ashesi.instructure.com](https://ashesi.instructure.com)
-2. Click **Account** → **Settings**
-3. Scroll down to **Approved Integrations**
-4. Click **+ New Access Token**
-5. Fill in:
-
-   * **Purpose**: `Script download`
-   * **Expires**: Any future date
-6. Click **Generate Token** and copy it
-
-### 4. Configure and Run the Script
-
-Open the Python script and replace the placeholder with your token:
+Edit `canvasDownloaderScript.py`:
 
 ```python
-ACCESS_TOKEN = 'your_token_here'
+ACCESS_TOKEN = "your_token_here"
+COURSE_ID = "12345"
+BASE_URL = "https://your-school.instructure.com"
 ```
 
-Run the script:
+Run:
 
 ```bash
-python canvas_downloader.py
+python canvasDownloaderScript.py
 ```
 
-All files will be downloaded to a folder named `canvas_files/` by default.
+## Security
 
-## 📁 Folder Structure
+- **Never commit** your access token to a public repo.
+- Tokens grant access to your Canvas account — rotate if leaked.
 
-```
-Canvas-File-Downloader/
-├── canvas_downloader.py      # Main script
-├── README.md                 # This file
-└── canvas_files/             # Folder where files will be saved
-```
+## TODO
 
-## ⚠️ Security Notes
+- [ ] CLI flags for course ID and output directory
+- [ ] Resume interrupted downloads
 
-* **Never share your token** in public repositories
-* Store tokens in environment variables or `.env` files for added safety
-* Tokens can expire — regenerate when needed
+---
 
-## 🧩 TODO
-
-* [ ] Add filtering by file type (e.g., PDF only)
-* [ ] Add CLI support for setting course ID and output folder
-* [ ] Enable multi-course file downloads
-
-## 📜 License
-
-This project is licensed under the MIT License.
-Free to use, modify, and share.
-
-## ✨ Contributing
-
-Pull requests are welcome!
-If you find bugs or want to improve the script, feel free to fork and contribute.
-
+[malimba](https://github.com/malimba)
